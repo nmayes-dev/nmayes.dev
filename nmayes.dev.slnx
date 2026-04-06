@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="nmayes.dev/nmayes.dev.Client/nmayes.dev.Client.csproj" />
+  <Project Path="nmayes.dev/nmayes.dev/nmayes.dev.csproj" />
+</Solution>

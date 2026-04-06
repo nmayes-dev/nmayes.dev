@@ -1,0 +1,38 @@
+﻿@inject HttpClient Http
+
+<div class="@ContainerCssClass" @onclick="ToggleCollapsed">
+    @if (!Expanded)
+    {
+        <div class="show-button">
+            Show
+        </div>
+    }
+    else
+    {
+        <div class="@CodeCssClass">
+            @SampleText
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public string? Sample { get; set; }
+
+    private string? SampleText;
+
+    private bool Expanded { get; set; } = false;
+
+    private string ContainerCssClass => Expanded ? "code-container" : "code-container centre";
+    private string CodeCssClass => Expanded ? "code-block" : "code-block blur";
+
+    protected override async Task OnInitializedAsync()
+    {
+        SampleText = await Http.GetStringAsync($"samples/{Sample}.sample");
+    }
+
+    private void ToggleCollapsed()
+    {
+        Expanded = !Expanded;
+    }
+}

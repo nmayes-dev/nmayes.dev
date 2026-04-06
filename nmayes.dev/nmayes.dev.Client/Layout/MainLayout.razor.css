@@ -1,0 +1,19 @@
+.page {
+    height: 100vh; /* Fill viewport height */
+    width: 100vw;
+    display: grid;
+    grid-template-rows: auto 1fr; /* Nav = natural height, content = remaining space */
+    row-gap: 1.5rem;
+    overflow: auto;
+    background-color: #DAEDF7;
+}
+
+/* Prevent body margin from breaking layout */
+body {
+    margin: 0;
+}
+
+/* Ensure main area can shrink properly */
+main {
+    min-height: 0;
+}

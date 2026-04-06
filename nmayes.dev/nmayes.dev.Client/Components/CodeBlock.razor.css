@@ -1,0 +1,31 @@
+﻿.code-container {
+    border: 2px solid;
+    border-radius: 10px;
+    padding: 12px;
+    background-color: white;
+    margin-bottom: 1.5rem;
+    cursor: pointer;
+}
+
+.code-block {
+    margin-left: 8px;
+    white-space: pre-wrap;
+    color: #8B441E;
+    font-size: small;
+    font-weight: bold;
+}
+
+.show-button {
+    padding: 4px;
+    border: 1px solid #6a6575;
+    border-radius: 8px;
+    max-width: min-content;
+    max-height: min-content;
+    color: #6a6575;
+}
+
+.blur {
+    height: 5vh;
+    max-height: 50px;
+    filter: blur(1.5rem);
+}

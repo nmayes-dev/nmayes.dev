@@ -1,0 +1,45 @@
+@rendermode InteractiveWebAssembly
+
+<div class="project">
+    <div class="project-header" @onclick="ToggleCollapsed">
+        <h2>@Name</h2>
+        <span class="@IconCssClass" aria-hidden="true"></span>
+    </div>
+
+    @if (!Expanded)
+    {
+        <div class="project-summary">
+            @Summary
+        </div>
+    }
+    else
+    {
+        <div class="project-detail">
+            <ImageLink Url="@GitHubUrl" Image="/images/github.svg" Text="GitHub" />
+            <br/>
+            @Detail
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public string Name { get; set; } = string.Empty;
+
+    [Parameter]
+    public RenderFragment? Summary { get; set; }
+
+    [Parameter]
+    public RenderFragment? Detail { get; set; }
+
+    private string IconCssClass => Expanded ? "oi oi-minus centre" : "oi oi-plus centre";
+
+    private string GitHubUrl { get { return $"https://github.com/njmayes/{Name.Replace(" ", "")}"; } }
+    private bool Expanded { get; set; } = false;
+
+    private async Task ToggleCollapsed()
+    {
+        Expanded = !Expanded;
+        await InvokeAsync(StateHasChanged);
+    }
+}

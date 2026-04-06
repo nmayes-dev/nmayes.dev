@@ -1,0 +1,18 @@
+<a href="@Url" class="image-link">
+    <img style="width:25px; height:25px;" draggable="false" src="@Image" />
+    <span>@Text</span>
+</a>
+
+@code {
+
+    [Parameter]
+    public string Url {get; set;} = string.Empty;
+
+
+    [Parameter]
+    public string Image {get; set;} = string.Empty;
+
+
+    [Parameter]
+    public string Text {get; set;} = string.Empty;
+}

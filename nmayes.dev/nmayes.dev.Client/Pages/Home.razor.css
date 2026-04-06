@@ -1,0 +1,96 @@
+﻿.home-heading {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+    .home-heading h1 {
+        font-size: clamp(2rem, 1.4rem + 2.5vw, 4rem);
+        color: #28262C;
+    }
+
+    .home-heading h2 {
+        font-size: clamp(1rem, 0.8rem + 1vw, 2rem);
+        color: #28262C;
+    }
+
+.skills-and-portrait {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: clamp(1rem, 4vw, 4rem);
+    margin-top: 1rem;
+}
+
+    .skills-and-portrait img {
+        width: clamp(2.5rem, 1.75rem + 2vw, 4.6875rem);
+        height: clamp(2.5rem, 1.75rem + 2vw, 4.6875rem);
+        object-fit: fill;
+        display: block;
+    }
+
+.skills {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(1rem, 2vw, 1.6rem);
+}
+
+.portrait-frame {
+    width: clamp(4rem, 2.75rem + 4vw, 8rem) !important;
+    height: clamp(4rem, 2.75rem + 4vw, 8rem) !important;
+    border-radius: 50%;
+}
+
+.socials {
+    width: min(50vw, 500px);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 0 auto;
+    padding-top: 2vh;
+    font-weight: bold;
+    column-gap: clamp(1rem, 3vw, 2rem);
+}
+
+.links {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: clamp(0.75rem, 3vw, 2rem);
+}
+
+.link-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    column-gap: 0.5rem;
+}
+
+    .link-item a {
+        color: #28262C;
+    }
+
+.email {
+    color: #28262C;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+}
+
+.home-body {
+    width: min(80vw, 800px);
+    margin: 2rem auto 0 auto;
+}
+
+    .home-body p {
+        font-size: clamp(0.9rem, 0.8rem + 0.35vw, 1.1rem);
+    }
+
+        .home-body p:first-of-type {
+            font-size: clamp(1.1rem, 1rem + 0.5vw, 1.35rem);
+        }

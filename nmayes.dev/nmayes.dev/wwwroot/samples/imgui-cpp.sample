@@ -1,0 +1,11 @@
+using ResolutionEntry = imcpp::ComboEntry<Resolution>;
+static constexpr std::array<ResolutionEntry, 3> sResolutionTable
+{
+    ResolutionEntry{ "1280x720",  Resolution{1280, 720} },
+    ResolutionEntry{ "1600x900",  Resolution{1600, 900} },
+    ResolutionEntry{ "1920x1080", Resolution{1920, 1080} }
+};
+
+Resolution currentResolution(1920, 1080);
+imcpp::Widgets::Combobox<Resolution>("Resolution", currentResolution.toString(), 
+    currentResolution, sResolutionTable);
