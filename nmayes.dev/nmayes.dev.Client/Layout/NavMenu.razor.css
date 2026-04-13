@@ -3,8 +3,8 @@
     flex-direction: row;
     align-items: center;
     justify-content: flex-end;
-    gap: clamp(0.45rem, 1.2vw, 0.9rem);
-    padding: clamp(0.45rem, 0.8vw, 0.65rem);
+    gap: clamp(0.25rem, 1vw, 0.9rem);
+    padding: clamp(0.25rem, 0.8vw, 0.65rem);
 }
 
 .nav-item {
@@ -22,7 +22,7 @@
     }
 
     .nav-item ::deep a {
-        font-size: clamp(0.95rem, 0.82rem + 0.32vw, 1.1rem);
+        font-size: clamp(0.7rem, 2.8vw, 1.1rem);
         color: #d6e2f2;
         padding: 0.2rem 0.6rem;
         text-decoration: none;
@@ -53,16 +53,4 @@
     border-radius: 999px;
     background: linear-gradient(135deg, rgba(125, 211, 252, 0.96), rgba(192, 132, 252, 0.9));
     box-shadow: 0 10px 22px rgba(56, 189, 248, 0.18);
-}
-
-@media (max-width: 560px) {
-    .nm-navbar {
-        justify-content: center;
-        flex-wrap: wrap;
-        border-radius: 1.5rem;
-    }
-
-    .nm-nav-button {
-        padding-inline: 0.9rem;
-    }
 }

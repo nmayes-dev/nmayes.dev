@@ -1,12 +1,12 @@
 .image-link {
     color: #e8f2ff;
-    font-size: min(3vw, 1rem);
+    font-size: clamp(0.8rem, 3vw, 1rem);
     font-weight: 600;
     display: inline-flex;
     align-items: center;
     column-gap: 0.6rem;
     text-decoration: none;
-    padding: 0.65rem 0.8rem;
+    padding: clamp(0.4rem, 1.6vw, 0.65rem) clamp(0.5rem, 2vw, 0.85rem);
     border: 1px solid rgba(148, 163, 184, 0.12);
     border-radius: 999px;
     background: rgba(255, 255, 255, 0.035);
@@ -26,4 +26,5 @@
 
 .image-link span {
     text-decoration: none;
+    font-size: clamp(0.8rem, 1vw, 1rem);
 }
