@@ -25,6 +25,9 @@ jobs:
           chmod 600 ~/.ssh/id_ed25519
 
       - name: Check secrets exist
+        env:
+          CF_ACCESS_CLIENT_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
+          CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
         run: |
           [ -n "$CF_ACCESS_CLIENT_ID" ] && echo "ID set"
           [ -n "$CF_ACCESS_CLIENT_SECRET" ] && echo "SECRET set"
