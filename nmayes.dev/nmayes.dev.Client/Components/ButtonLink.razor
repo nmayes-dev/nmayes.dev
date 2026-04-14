@@ -1,0 +1,21 @@
+<a href="@Url" class="image-link" target="_blank">
+    @if (Image is not null)
+    {
+        <img draggable="false" src="@Image" />
+    }
+    <span>@Text</span>
+</a>
+
+@code {
+
+    [Parameter]
+    public string Url { get; set; } = string.Empty;
+
+
+    [Parameter]
+    public string? Image { get; set; }
+
+
+    [Parameter]
+    public string Text { get; set; } = string.Empty;
+}

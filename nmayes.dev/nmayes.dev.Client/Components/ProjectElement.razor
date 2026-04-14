@@ -1,7 +1,7 @@
 <div class="project @(!Expanded ? "project-highlight" : "")">
     <div class="project-header @(Expanded ? "project-highlight" : "")" @onclick="ToggleCollapsed">
         <h2>@Name</h2>
-        <span class="@IconCssClass" aria-hidden="true"></span>
+        <span class="@IconCssClass" aria-hidden="true" />
     </div>
 
     @if (!Expanded)
@@ -13,8 +13,12 @@
     else
     {
         <div class="project-detail">
-            <div class="project-link">
-                <ImageLink Url="@GitHubUrl" Image="/images/github.svg" Text="GitHub" />
+            <div class="project-links">
+                <ButtonLink Url="@GitHubUrl" Image="/images/github.svg" Text="GitHub" />
+                @if (Link is not null)
+                {
+                    <ButtonLink Url="@Link" Text="Try It Here" />
+                }
             </div>
             @Detail
         </div>
@@ -24,6 +28,9 @@
 @code {
     [Parameter]
     public string Name { get; set; } = string.Empty;
+
+    [Parameter]
+    public string? Link { get; set; }
 
     [Parameter]
     public RenderFragment? Summary { get; set; }
