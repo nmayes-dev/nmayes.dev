@@ -45,6 +45,17 @@ jobs:
           echo $! > /tmp/cloudflared.pid
           sleep 8
 
+      - name: Show cloudflared log before SSH
+        run: |
+          ps -p "$(cat /tmp/cloudflared.pid)" -o pid,cmd
+          sed -n '1,200p' /tmp/cloudflared.log
+
+      - name: Dump cloudflared log on failure
+        if: failure()
+        run: |
+          echo "===== cloudflared log ====="
+          sed -n '1,300p' /tmp/cloudflared.log || true
+
       - name: Check cloudflared is still running
         run: |
           ps -p "$(cat /tmp/cloudflared.pid)" -o pid,cmd
@@ -57,7 +68,7 @@ jobs:
               -o StrictHostKeyChecking=no \
               -o UserKnownHostsFile=/dev/null \
               -p 2222 \
-              nathan@localhost \
+              nathan@127.0.0.1 \
               'hostname && whoami'
 
       - name: Deploy Prod (master)
