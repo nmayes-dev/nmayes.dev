@@ -16,6 +16,7 @@ jobs:
           curl -L https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64 -o cloudflared
           chmod +x cloudflared
           sudo mv cloudflared /usr/local/bin/cloudflared
+          cloudflared --version
 
       - name: Set up SSH key
         run: |
@@ -23,17 +24,33 @@ jobs:
           printf '%s\n' "${{ secrets.SSH_KEY }}" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
 
+      - name: Check secrets exist
+        run: |
+          [ -n "$CF_ACCESS_CLIENT_ID" ] && echo "ID set"
+          [ -n "$CF_ACCESS_CLIENT_SECRET" ] && echo "SECRET set"
+
       - name: Start Cloudflare Access TCP proxy
         env:
           CF_ACCESS_CLIENT_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
           CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
         run: |
-          nohup cloudflared access tcp --hostname ssh.nmayes.dev --url localhost:2222 > /tmp/cloudflared.log 2>&1 &
-          sleep 5
+          nohup cloudflared access tcp \
+            --hostname ssh.nmayes.dev \
+            --url localhost:2222 \
+            --loglevel debug \
+            > /tmp/cloudflared.log 2>&1 &
+          echo $! > /tmp/cloudflared.pid
+          sleep 8
+
+      - name: Check cloudflared is still running
+        run: |
+          ps -p "$(cat /tmp/cloudflared.pid)" -o pid,cmd
+          sed -n '1,200p' /tmp/cloudflared.log
 
       - name: Verify SSH connectivity
         run: |
-          ssh -i ~/.ssh/id_ed25519 \
+          ssh -vvv \
+              -i ~/.ssh/id_ed25519 \
               -o StrictHostKeyChecking=no \
               -o UserKnownHostsFile=/dev/null \
               -p 2222 \
@@ -59,3 +76,9 @@ jobs:
               -p 2222 \
               nathan@localhost \
               'cd ~/server/dev/apps/home && docker compose restart home'
+
+      - name: Dump cloudflared log on failure
+        if: failure()
+        run: |
+          echo "===== cloudflared log ====="
+          sed -n '1,300p' /tmp/cloudflared.log || true
